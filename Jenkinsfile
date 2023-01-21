@@ -1,22 +1,23 @@
-
 pipeline {
     agent any;
     stages {
-        when {
-            branch "main"
-        }
+        
         stage('color log') {
+          when {
+            branch "main"
+          }
           steps {
             sh "echo '\033[35mlog\033\033colorido!\033'"
           }
         }
-        when {
-            branch "feat/*"
-        }
+      
         stage('color log feature') {
+           when {
+              branch "feat/*"
+           }
           steps {
             sh "echo '\033[35mlog\033\033feature!\033'"
           }
         }
     }
-}  
+} 
