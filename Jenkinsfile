@@ -2,16 +2,13 @@ pipeline {
     agent any;
     stages {
         stage('color log') {
-            when { branch 'main' }
-              steps {
-                sh "echo '\033[35mlog\033\033colorido!\033'"
-              }
-         }
-         stage('color log feature') {
-             when { branch 'feat/*' }
-              steps {
-                sh "echo '\033[31mlog\033\033colorido 2!\033'"
-              }
+            script {
+                    if (env.BRANCH_NAME == 'main') {
+                        sh "echo '\033[35mlog\033\033colorido!\033'"
+                    }  else {
+                        sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+                    }
+            }
         }
     }
 }
